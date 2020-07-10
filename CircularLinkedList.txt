@@ -1,0 +1,185 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+class Node
+{
+	public:
+		int key;
+		int data;
+		Node * next;
+		Node()
+		{
+			key=0;
+			data=0;
+			next=NULL;
+		}
+		Node(int k,int d)
+		{
+			key=k;
+			data=d;
+			next=NULL;
+		}
+};
+
+class CircularLinkedList
+{
+	public:
+		Node * head;
+		CircularLinkedList()
+		{
+			head=NULL;
+		}	
+		
+		
+
+		Node * nodeExist(int k)
+		{
+			Node * temp=NULL;
+			Node * ptr=head;
+			if(ptr==NULL)
+			{
+				return temp;
+			}
+			do
+			{
+				if(ptr->key==k)
+				{
+					temp=ptr;
+				}
+			   ptr=ptr->next;
+			}while(ptr!=head);
+		   return temp;	
+		}
+	
+	
+
+		void appendNode(Node * n)
+		{
+			if(nodeExist(n->key)!=NULL)
+			{
+				cout<<"\nNode already exist with given key value";
+			}
+			else
+			{
+				if(head==NULL)
+				{
+					head=n;
+					n->next=head;
+					cout<<"\nElement appended successfully";	
+				}
+				else
+				{
+					Node * ptr=head;
+					while(ptr->next!=head)
+					{
+						ptr=ptr->next;
+					}
+				    ptr->next=n;
+			    	    n->next=head;
+			            cout<<"\nNode Appended Successfully!!";								
+				}	
+			}
+		}
+
+		void prepend(Node * n)
+		{
+			if(nodeExist(n->key)!=NULL)
+			{
+				cout<<"\nNode already exist with given key value";
+			}
+			else
+			{
+				if(head==NULL)
+				{
+					head=n;
+					n->next=head;
+					cout<<"\nNode prepended successfully"
+				}
+				else
+				{
+					Node * ptr=head;
+					while(ptr->next!=head)
+					{
+						ptr=ptr->next;
+					}
+					ptr->next=n;
+					n->next=head;
+					head=n;
+					cout<<"\nNode prepended successfully!!";
+				}
+			}
+		} 
+
+		void insertNode(int k,Node * n)
+		{
+			Node * ptr=nodeExist(k);
+			if(ptr==NULL)
+			{
+				cout<<"\nA node already exist with same key value";
+			}
+			else
+			{
+				if(nodeExist(n->key)!=NULL)
+				{
+					cout<<"\nNode alreday exit with given key value";	
+				}
+				else
+				{
+					if(ptr->next=head)
+					{
+						n->next=head;
+						ptr->next=n;
+						cout<<"\nNode inserted successfully!";
+					}		
+					else
+					{
+						n->next=ptr->next;
+						ptr->next=n;
+						cout<<"\nNode inserted in between";
+					}
+				}
+			}
+		}
+
+		void deleteNode(int k)
+		{
+			Node * ptr=nodeExist(k);
+			if(ptr==NULL)
+			{
+				cout<<"\nNo node exist with this key value";
+			}
+			else
+			{
+				if(ptr==head)
+				{
+					if(head->next==NULL)
+					{
+						head=NULL;
+`						cout<<"\nNode deleted (head)...";
+					}		
+				
+					else
+					{
+						Node * nptr=head;
+						while(nptr->next!=head)
+						{
+							nptr=nptr->next;
+						}	 
+					   nptr->next=head->next;
+				 	   head=head->next;	
+		              		   cout<<"\nNode unlinked ";		
+					}
+				}
+				else
+				{
+					Node* temp=NULL;
+					Node * prev=head;
+					Node * current=head->next;
+					while(current!=NULL)
+					{
+						
+					}
+				}
+			}
+		}		
+};
